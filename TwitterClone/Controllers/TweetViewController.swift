@@ -12,9 +12,10 @@ import Toast_Swift
 class TweetViewController: UIViewController {
     @IBOutlet weak var txtTweet: UITextView!
     
+    var user : User?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        user = Auth.auth().currentUser
         // Do any additional setup after loading the view.
     }
     
@@ -29,17 +30,18 @@ class TweetViewController: UIViewController {
         
         guard let key = dbRef.child("Tweets").child(userID).childByAutoId().key else { return}
         
-        let post = [
-            "Message": txtTweet.text!,
-            "Author" : Auth.auth().currentUser?.email!,
-            "DateTime": ServerValue.timestamp()] as [String : Any]
+        //let tweet = TweetClass(Auth.auth().currentUser!, txtTweet.text!)
+        let post: [String: Any] = [ "uid": user!.uid,
+                                    "Author": user!.displayName,
+                                    "Email": user!.email,
+                                    "Tweet": txtTweet.text!,
+                                    "DateTime": ServerValue.timestamp(),
+                                    "ImageUrl": ""]
         
         let childUpdates = ["/Tweets/\(userID)/\(key)" : post]
         dbRef.updateChildValues(childUpdates)
-        self.view.makeToast("Your Tweet is posted", duration: 3.0, position: .top)
-        
-
-        //self.navigationController?.popViewController(animated: true)
+        self.view.makeToast("Your Tweet is posted", duration: 3.0, position: .center)
+        txtTweet.text = ""
         
     }
     

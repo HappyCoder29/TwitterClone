@@ -7,7 +7,25 @@
 		<key>TwitterClone.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>22</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>756CE43925676FBD00BCCB2A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>756CE44F25676FC000BCCB2A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>756CE45A25676FC000BCCB2A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
